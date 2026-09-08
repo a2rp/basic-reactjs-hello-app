@@ -1,23 +1,64 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 
-function App() {
-    const [dateTime, setDateTime] = useState(new Date().toISOString());
-    useEffect(() => {
-        const updateDateTime = () => {
-            setDateTime(new Date().toISOString());
-        };
-        const timeout = setTimeout(updateDateTime, 10);
+const App = () => {
+    // Keep the current Date object in state so React re-renders the clock.
+    const [currentDateTime, setCurrentDateTime] = useState(() => new Date());
 
-        return () => clearTimeout(timeout);
-    }, [dateTime]);
+    useEffect(() => {
+        // One update per second is enough for a clock and avoids unnecessary work.
+        const timerId = window.setInterval(() => {
+            setCurrentDateTime(new Date());
+        }, 1000);
+
+        // Clear the timer when the component leaves the page.
+        return () => window.clearInterval(timerId);
+    }, []);
+
+    // Intl uses the visitor's browser locale and time zone for readable values.
+    const formattedDateTime = useMemo(() => {
+        const dateFormatter = new Intl.DateTimeFormat(undefined, {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+        });
+        const timeFormatter = new Intl.DateTimeFormat(undefined, {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+        });
+
+        return {
+            date: dateFormatter.format(currentDateTime),
+            time: timeFormatter.format(currentDateTime),
+            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone || "Local time",
+        };
+    }, [currentDateTime]);
 
     return (
-        <div className="App" style={{ display: "flex", gap: "15px", justifyContent: "center", alignItems: "center", height: "100vh", flexDirection: "column" }}>
-            <h1>{dateTime}</h1>
-            <h2>a2rp: an Ashish Ranjan presentation</h2>
-        </div>
+        <main className="app-shell">
+            <section className="clock-card" aria-labelledby="clock-title">
+                <p className="eyebrow">React basics</p>
+                <h1 id="clock-title">Hello from React</h1>
+                <p className="intro">
+                    A small Create React App example that keeps the browser date and time current.
+                </p>
+
+                <div className="clock-display" aria-live="polite">
+                    <time className="clock-time" dateTime={currentDateTime.toISOString()}>
+                        {formattedDateTime.time}
+                    </time>
+                    <p className="clock-date">{formattedDateTime.date}</p>
+                </div>
+
+                <div className="clock-footer">
+                    <span>Time zone: {formattedDateTime.timeZone}</span>
+                    <span>Updates every second</span>
+                </div>
+            </section>
+        </main>
     );
-}
+};
 
 export default App;
