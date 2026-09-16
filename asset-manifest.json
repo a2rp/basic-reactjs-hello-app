@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/basic-reactjs-hello-app/static/css/main.875a0d43.css",
+    "main.js": "/basic-reactjs-hello-app/static/js/main.3fc74283.js",
+    "index.html": "/basic-reactjs-hello-app/index.html",
+    "main.875a0d43.css.map": "/basic-reactjs-hello-app/static/css/main.875a0d43.css.map",
+    "main.3fc74283.js.map": "/basic-reactjs-hello-app/static/js/main.3fc74283.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.875a0d43.css",
+    "static/js/main.3fc74283.js"
+  ]
+}
