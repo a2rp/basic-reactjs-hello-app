@@ -65,7 +65,7 @@ const AppHeader = ({ isVisible }) => {
             <div className="header-inner">
                 <a className="brand" href="#top" onClick={closeMenu}>
                     <span className="brand-mark">
-                        <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Ashish Ranjan logo" />
+                        <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Ashish Ranjan logo" />
                     </span>
                     <span>
                         <strong>Hello React</strong>

@@ -17,12 +17,14 @@ A small React starter app that combines a friendly greeting with a live browser 
 ## Tech stack
 
 - React 18
-- Create React App
+- Vite
 - JavaScript
 - Plain CSS
 - React Icons
 
 ## Run locally
+
+Requires Node.js 20.19 or newer and npm.
 
 ```powershell
 npm install
