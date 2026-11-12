@@ -8,6 +8,7 @@ import {
     FiClock,
     FiCoffee,
     FiGlobe,
+    FiMail,
     FiMenu,
     FiRefreshCw,
     FiX,
@@ -38,7 +39,7 @@ const footerLinks = [
     { label: "Support", href: "https://a2rp-donation-page.netlify.app/", icon: FiCheckCircle },
     { label: "Buy Me a Coffee", href: "https://buymeacoffee.com/a2rp", icon: FiCoffee },
     { label: "Patreon", href: "https://www.patreon.com/a2rp", icon: FaPatreon },
-    { label: "Email", href: "mailto:ash.ranjan09@gmail.com", icon: FiCalendar },
+    { label: "Email", href: "mailto:ash.ranjan09@gmail.com", icon: FiMail },
 ];
 
 const AppHeader = ({ isVisible }) => {
